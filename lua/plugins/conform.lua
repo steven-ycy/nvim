@@ -1,30 +1,37 @@
-return{
-    {'stevearc/conform.nvim',
-  
-	config = function ()
-    require("conform").setup({
-  formatters_by_ft = {
-    lua = { "stylua" },
-    -- Conform will run multiple formatters sequentially
-    python = { "isort", "black" },
-    -- You can customize some of the format options for the filetype (:help conform.format)
-    rust = { "rustfmt", lsp_format = "fallback" },
-    -- Conform will run the first available formatter
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-    c = { "clang-format" },
-    cpp = { "clang-format" },
-  },
-	      format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 500,
-    lsp_format = "fallback",
-  },
+return {
+	{
+		'stevearc/conform.nvim',
 
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					-- Conform will run multiple formatters sequentially
+					python = { "isort", "black" },
+					-- You can customize some of the format options for the filetype (:help conform.format)
+					rust = { "rustfmt", lsp_format = "fallback" },
+					-- Conform will run the first available formatter
+					javascript = { "prettierd", "prettier", stop_after_first = true },
+					c = { "clang-format" },
+					cpp = { "clang-format" },
+				},
+				format_on_save = {
+					-- These options will be passed to conform.format()
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				},
+				formatters = {
+					-- C / C++ (clang-format) 設定 4 格縮排
+					["clang-format"] = {
+						prepend_args = {
+							"-style={BasedOnStyle: llvm, IndentWidth: 4, TabWidth: 4}",
+						},
+					}
 
-})
+				}
+			})
+		end,
 
-	    end,	
-   
-    }
+	}
 
 }

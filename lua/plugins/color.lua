@@ -42,6 +42,7 @@ return {
 						NeoTreeCursorLine = { bg = colors.surface0 },
 						NeoTreeDirectoryIcon = { fg = colors.yellow },
 						NeoTreeDirectoryName = { fg = colors.text },
+						SnacksDashboardHeader = { fg = colors.yellow, bold = true },
 					}
 				end,
 			})

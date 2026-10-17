@@ -10,5 +10,16 @@ return {
 			enabled = true, -- 取代 nvim-notify，美化彈出訊息
 			timeout = 3000,
 		},
+		dashboard = { enable = true },
+	},
+	keys = {
+		-- 綁定快捷鍵（例如 <leader>bd 或 <leader>db）
+		{
+			"<leader>db",
+			function()
+				Snacks.dashboard()
+			end,
+			desc = "開啟 Dashboard",
+		},
 	},
 }

@@ -19,7 +19,7 @@ return {
 				visible = false,
 				hide_dotfiles = false,
 				hide_gitignored = true,
-				hide_by_name = { "node_modules", ".git", ".DS_Store" },
+				--	hide_by_name = { "node_modules", ".git", ".DS_Store" },
 			},
 			window = {
 				mappings = {

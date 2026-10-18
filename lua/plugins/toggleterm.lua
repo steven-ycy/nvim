@@ -69,25 +69,49 @@ return {
 			vim.keymap.set("n", "<leader>r", function()
 				vim.cmd("write")
 				local ft = vim.bo.filetype
-				local file = vim.fn.expand("%")
+				local cwd = vim.fn.getcwd()
+				--local file = vim.fn.expand("%")
 				local cmd = ""
+				local file = vim.fn.expand("%:p") -- 原始檔完整路徑
+				local fname = vim.fn.expand("%:t:r") -- 只有純檔名，不含副檔名與路徑 (例如 main.cpp -> main)
+				local out_bin = cwd .. "/obj/" .. fname -- 目標二進位檔路徑
 
+				local escaped_src = vim.fn.shellescape(file)
+				local escaped_bin = vim.fn.shellescape(out_bin)
+
+				-- 先建立 obj 目錄，再編譯，最後執行
 				if ft == "cpp" then
-					cmd = "g++ -O2 " .. file .. " -o /tmp/app && /tmp/app"
+					cmd = string.format("g++ -O2 %s -o %s && %s", escaped_src, escaped_bin, escaped_bin)
 				elseif ft == "c" then
-					cmd = "gcc -O2 " .. file .. " -o /tmp/app && /tmp/app"
-				elseif ft == "python" then
-					cmd = "python3 " .. file
-				elseif ft == "sh" then
-					cmd = "bash " .. file
-				else
-					vim.notify("未支援的檔案類型: " .. ft, vim.log.levels.WARN)
-					return
+					cmd = string.format("gcc -O2 %s -o %s && %s", escaped_src, escaped_bin, escaped_bin)
 				end
 
 				-- 在 1 號浮動終端機中執行該指令
 				require("toggleterm").exec(cmd, 1, nil, nil, "float")
 			end, { desc = "Run current file in ToggleTerm" })
+			vim.keymap.set("n", "<leader>rd", function()
+				vim.cmd("write")
+				local ft = vim.bo.filetype
+				local cwd = vim.fn.getcwd()
+				--local file = vim.fn.expand("%")
+				local cmd = ""
+				local file = vim.fn.expand("%:p") -- 原始檔完整路徑
+				local fname = vim.fn.expand("%:t:r") -- 只有純檔名，不含副檔名與路徑 (例如 main.cpp -> main)
+				local out_bin = cwd .. "/obj/" .. fname -- 目標二進位檔路徑
+
+				local escaped_src = vim.fn.shellescape(file)
+				local escaped_bin = vim.fn.shellescape(out_bin)
+
+				-- 先建立 obj 目錄，再編譯，最後執行
+				if ft == "cpp" then
+					cmd = string.format("g++ -g -O0 %s -o %s", escaped_src, escaped_bin)
+				elseif ft == "c" then
+					cmd = string.format("gcc -g -O0 %s -o %s", escaped_src, escaped_bin)
+				end
+
+				-- 在 1 號浮動終端機中執行該指令
+				require("toggleterm").exec(cmd, 1, nil, nil, "float")
+			end, { desc = "ToggleTerm and for debugging" })
 		end
 	},
 

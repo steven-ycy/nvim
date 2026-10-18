@@ -11,6 +11,7 @@ return {
 			timeout = 3000,
 		},
 		dashboard = { enable = true },
+		picker = { enabled = true },
 	},
 	keys = {
 		-- 綁定快捷鍵（例如 <leader>bd 或 <leader>db）
@@ -21,5 +22,23 @@ return {
 			end,
 			desc = "開啟 Dashboard",
 		},
+		{
+			"<leader>un",
+			function() Snacks.notifier.show_history() end,
+			desc = "Notification History",
+		},
+		-- {
+		-- 	"<leader>unx",
+		-- 	function() Snacks.notifier.hide() end,
+		-- 	desc = "Dismiss All Notifications",
+		-- },
+		-- {
+		-- 	"<leader>su",
+		-- 	function()
+		-- 		Snacks.picker.undo()
+		-- 	
+		-- 	end,
+		-- 	desc = "Search Undo Tree",
+		-- },
 	},
 }

@@ -19,7 +19,7 @@ return
 		vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 		vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 		vim.keymap.set("n", "<leader>sn", "<cmd>Noice telescope<cr>", { desc = "搜尋所有歷史訊息與報錯" })
-
+		vim.keymap.set("n", "<leader>sm", "<cmd>Telescope noice<cr>", { desc = "Search Messages (Noice)" })
 		vim.keymap.set("n", "<leader>fn", function()
 			pcall(require("telescope").load_extension, "notify")
 			require("telescope").extensions.notify.notify()

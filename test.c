@@ -1,6 +1,3 @@
 #include <stdio.h>
-
-int main() {
-  int a = 6;
-  return 0;
-}
+#include <stdlib.h>
+int main() { int a = 6; }

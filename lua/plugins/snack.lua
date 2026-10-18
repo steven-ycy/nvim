@@ -22,11 +22,11 @@ return {
 			end,
 			desc = "開啟 Dashboard",
 		},
-		{
-			"<leader>un",
-			function() Snacks.notifier.show_history() end,
-			desc = "Notification History",
-		},
+		-- {
+		-- 	"<leader>un",
+		-- 	function() Snacks.notifier.show_history() end,
+		-- 	desc = "Notification History",
+		-- },
 		-- {
 		-- 	"<leader>unx",
 		-- 	function() Snacks.notifier.hide() end,

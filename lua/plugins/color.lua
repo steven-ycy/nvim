@@ -24,13 +24,17 @@ return {
 					telescope = { enabled = true },
 					mason = true,
 					which_key = true,
+					noice = true,
+					notify = true,
+					cmp = true,
+
 				},
 				custom_highlights = function(colors)
 					return {
 						-- 游標當前行行號顯示黃色
 						CursorLineNr = { fg = colors.yellow, bold = true },
 
-						-- 浮動視窗邊框（含 lazygit.nvim 彈出框）全面套用黃色
+						-- 浮動視窗邊框（含 lazygit.nvim 彈出框）全面套用色
 						FloatBorder = { fg = colors.yellow },
 						LazyGitBorder = { fg = colors.yellow },
 
@@ -55,9 +59,16 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
+			"catppuccin/nvim",
+
 		},
-		opts = {
-			theme = "tokyonight",
-		},
+		opts = function()
+			return {
+				options    = {
+					theme = 'ayu_dark',
+				},
+				extensions = { 'toggleterm', 'quickfix' }
+			}
+		end
 	},
 }

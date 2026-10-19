@@ -14,8 +14,8 @@ return {
 		-- 設定專屬於此視窗的透明背景與邊框樣式
 		local set_popup_hl = function()
 			-- 浮動視窗底色與邊框設為透明或微調
-			vim.api.nvim_set_hl(0, "NoicePopupNormal", { bg = "NONE", ctermbg = "NONE" })
-			vim.api.nvim_set_hl(0, "NoicePopupBorder", { fg = "#f9e2af", bg = "NONE", ctermbg = "NONE" })
+			vim.api.nvim_set_hl(0, "NoicePopupNormal", { bg = "none", ctermbg = "NONE" })
+			vim.api.nvim_set_hl(0, "NoicePopupBorder", { fg = "#81c8be", bg = "NONE", ctermbg = "NONE" })
 		end
 
 		set_popup_hl()
@@ -84,7 +84,7 @@ return {
 					close = {
 						keys = { "q", "<Esc>" }, },
 					win_options = {
-						winblend = 15,
+						winblend = 90,
 						winhighlight = {
 							Normal = "NoicePopupNormal",
 							FloatBorder = "NoicePopupBorder",

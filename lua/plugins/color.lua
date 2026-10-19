@@ -56,7 +56,7 @@ return {
 						SnacksDashboardNormal   = { bg = "none" },
 						SnacksDashboardTerminal = { bg = "none" },
 						--SnacksDashboardNormalNC = { bg = "none" },
-						--NeoTreeSignColumn       = { bg = "none" },
+						--NeoTreeSignColumn       = { bg = "none" }
 					}
 				end,
 			})
@@ -75,7 +75,7 @@ return {
 		opts = function()
 			return {
 				options    = {
-					theme = 'ayu_dark',
+					theme = 'everforest',
 				},
 				extensions = { 'toggleterm', 'quickfix' }
 			}

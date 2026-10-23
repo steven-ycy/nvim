@@ -80,7 +80,7 @@ return {
 					win_options = {
 						winhighlight = {
 							Normal = "NormalFloat",
-							FloatBorder = "MyLavnederBorder",
+							FloatBorder = "FloatBorder",
 						},
 					},
 				},
@@ -122,11 +122,11 @@ return {
 				-- 	{ "{message}", before = { "\n \u{276f} ", hl_group = "NoiceArrowYellow" } },
 				-- },
 				details = {
-
+					{ "\u{f005} ", hl_group = "NoiceStart" },
 					{ "{level} ", },
 					{ "{date} ", },
 					{ "{event}", },
-					{ "{kind}",   before = { ".", hl_group = "NoiceFormatKind" } },
+					{ "{kind}",    before = { ".", hl_group = "NoiceFormatKind" } },
 					" ",
 					{
 						"{title}",

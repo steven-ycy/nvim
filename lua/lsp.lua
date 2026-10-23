@@ -17,6 +17,26 @@ vim.diagnostic.config({
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
+
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+		format = function(diagnostic)
+			local icons = {
+				[vim.diagnostic.severity.ERROR] = "\u{f057}",
+				[vim.diagnostic.severity.WARN] = "\u{f071}",
+				[vim.diagnostic.severity.INFO] = "\u{f0820}",
+				[vim.diagnostic.severity.HINT] = "\u{f05a}",
+			}
+			local icon = icons[diagnostic.severity] or "● "
+			return string.format("%s %s", icon, diagnostic.message)
+		end,
+
+	},
 })
 
 -- 診斷跳轉快捷鍵（全域通用，不依賴個別 LSP 連線）
@@ -60,9 +80,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		opts.desc = "Signature documentation"
 		map("n", "<leader>k", vim.lsp.buf.signature_help, opts)
 
-		-- 程式碼操作與重新命名
-		opts.desc = "Smart rename"
-		map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		-- -- 程式碼操作與重新命名
+		-- opts.desc = "Smart rename"
+		-- map("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
 		opts.desc = "Code action"
 		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)

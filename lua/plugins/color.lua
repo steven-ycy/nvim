@@ -37,7 +37,7 @@ return {
 						CursorLine   = { bg = "#040935" },
 						LineNr       = { fg = "#415a77", bg = "none" },
 						Visual       = { bg = "#1b2438", fg = "none" },
-						FloatBorder  = { fg = colors.yellow, bg = "none" },
+						FloatBorder  = { fg = colors.yellow, bg = "#1e1e2e" },
 						NormalFloat  = { bg = "#1e1e2e" },
 
 
@@ -65,6 +65,9 @@ return {
 							fg = colors.blue,
 							bold = true,
 						},
+						NoiceStart              = {
+							fg = "#E6C384",
+						}
 
 
 						--SnacksDashboardNormalNC = { bg = "none" },

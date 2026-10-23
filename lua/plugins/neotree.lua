@@ -30,7 +30,7 @@ return {
 					["<leader>cd"] = "navigate_up",
 				}
 			},
-			close_if_last_window = true,
+			close_if_last_window = false,
 			popup_border_style = "rounded",
 			filesystem = {
 				follow_current_file = {

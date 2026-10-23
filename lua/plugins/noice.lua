@@ -5,28 +5,26 @@ return {
 	dependencies = {
 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 		"MunifTanjim/nui.nvim",
+		"hrsh7th/nvim-cmp",
+
 		-- OPTIONAL:
 		--   `nvim-notify` is only needed, if you want to use the notification view.
 		--   If not available, we use `mini` as the fallback
 		"rcarriga/nvim-notify",
 	},
 	config       = function()
-		-- 設定專屬於此視窗的透明背景與邊框樣式
-		local set_popup_hl = function()
-			-- 浮動視窗底色與邊框設為透明或微調
-			vim.api.nvim_set_hl(0, "NoicePopupNormal", { bg = "none", ctermbg = "NONE" })
-			vim.api.nvim_set_hl(0, "NoicePopupBorder", { fg = "#81c8be", bg = "NONE", ctermbg = "NONE" })
-		end
+		local colors = require("catppuccin.palettes").get_palette("mocha")
 
-		set_popup_hl()
-		vim.api.nvim_create_autocmd("ColorScheme", {
-			pattern = "*",
-			callback = set_popup_hl,
-		})
+		local colors2 = require("catppuccin.palettes").get_palette("frappe")
+		vim.api.nvim_set_hl(0, "MyLavenderBorder", { fg = colors2.lavender })
 		vim.keymap.set("n", "<leader>nn", "<cmd>Noice<cr>", { desc = "Search Messages (Noice)" })
 		vim.keymap.set("n", "<leader>na", "<cmd>Noice all<cr>", { desc = "Search Messages all(Noice)" })
-
 		require("noice").setup({
+			cmdline = {
+				format = {
+					cmdline = { icon = "\u{f0f67}" }
+				}
+			},
 			lsp = {
 				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 				override = {
@@ -67,6 +65,25 @@ return {
 				},
 			},
 			views = {
+				hover = {
+					border = {
+						style = "rounded",
+						padding = { 0, 1 }, -- 上下 0 行、左右 1 格內距
+					},
+					size = {
+						max_width = 80, -- 最大寬度上限（防止過寬）
+
+
+						max_height = 20, -- 最大高度上限（超出時會出現捲動）
+					},
+					position = { row = 2, col = 1 },
+					win_options = {
+						winhighlight = {
+							Normal = "NormalFloat",
+							FloatBorder = "MyLavnederBorder",
+						},
+					},
+				},
 				custom_popup = {
 					backend = "popup",
 					enter = true,
@@ -93,8 +110,82 @@ return {
 					},
 				},
 			},
+			format = {
+				-- default = {
+				-- 	{ "{level} " },
+				-- 	{
+				-- 		"{title}",
+				-- 		before = { "[ ", hl_group = "Comment" },
+				-- 		after = { " ] ", hl_group = "Comment" }
+				-- 	},
+				--
+				-- 	{ "{message}", before = { "\n \u{276f} ", hl_group = "NoiceArrowYellow" } },
+				-- },
+				details = {
+
+					{ "{level} ", },
+					{ "{date} ", },
+					{ "{event}", },
+					{ "{kind}",   before = { ".", hl_group = "NoiceFormatKind" } },
+					" ",
+					{
+						"{title}",
+						before = { "[", hl_group = "NoiceBracketBlue" },
+						after = { "] ", hl_group = "NoiceBracketBlue" }
+					},
+					{
+						"{cmdline}",
+						before = { "\n \u{f120} ", hl_group = "NoiceFormatCmdline" }
+
+					},
+					{
+						"{message}",
+						before = { "\n \u{27a4} ", hl_group = "NoiceArrowLavender" }
+					},
+					"\n",
+				},
+
+			},
 
 
+		})
+
+
+
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = colors2.rosewater, bg = "none" })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderFilter", { fg = colors2.mauve, bg = "none" })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { fg = colors2.yellow, bg = "none" })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderInput", { fg = colors2.teal, bg = "none" })
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderHelp", { fg = colors2.blue, bg = "none" })
+
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderLua", { fg = colors2.flamingo, bg = "none" })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconCmdline", { fg = colors2.yellow })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = colors2.rosewater })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconFilter", { fg = colors2.mauve })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconInput", { fg = colors2.teal })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconHelp", { fg = colors2.blue })
+
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconLua", { fg = colors2.flamingo })
+		local set_popup_hl = function()
+			vim.api.nvim_set_hl(0, "NoicePopupNormal", { bg = "none", ctermbg = "NONE" })
+			vim.api.nvim_set_hl(0, "NoicePopupBorder",
+				{ fg = colors2.lavender, bg = "NONE", ctermbg = "NONE" })
+		end
+
+		set_popup_hl()
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			pattern = "*",
+			callback = set_popup_hl
 		})
 	end
 }

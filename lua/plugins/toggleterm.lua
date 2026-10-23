@@ -26,18 +26,6 @@ return {
 						return vim.o.columns * 0.4
 					end
 				end,
-				highlights = {
-					Normal = {
-						guibg = colors.mantle, -- mantle 比主背景 (base) 稍微深一點點，凸顯層次感
-					},
-					NormalFloat = {
-						link = "Normal",
-					},
-					FloatBorder = {
-						guifg = colors.yellow, -- 改為黃色（Catppuccin Mocha Yellow: #f9e2af）
-						guibg = colors.mantle, -- 邊框底色與視窗內部一致，乾淨無接縫
-					},
-				},
 			})
 
 			vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>ToggleTerm direction=float<CR>",
@@ -66,7 +54,7 @@ return {
 				desc = "Apply terminal keymaps to toggleterm",
 			})
 
-			vim.keymap.set("n", "<leader>r", function()
+			vim.keymap.set("n", "<leader>fr", function()
 				vim.cmd("write")
 				local ft = vim.bo.filetype
 				local cwd = vim.fn.getcwd()
@@ -89,7 +77,7 @@ return {
 				-- 在 1 號浮動終端機中執行該指令
 				require("toggleterm").exec(cmd, 1, nil, nil, "float")
 			end, { desc = "Run current file in ToggleTerm" })
-			vim.keymap.set("n", "<leader>rd", function()
+			vim.keymap.set("n", "<leader>fd", function()
 				vim.cmd("write")
 				local ft = vim.bo.filetype
 				local cwd = vim.fn.getcwd()

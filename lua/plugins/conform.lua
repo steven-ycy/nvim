@@ -23,7 +23,7 @@ return {
 				formatters = {
 					-- C / C++ (clang-format) 設定 4 格縮排
 					["clang-format"] = {
-						prepend_args = {
+						append_args = {
 							"-style={BasedOnStyle: llvm, IndentWidth: 4, TabWidth: 4}",
 						},
 					}

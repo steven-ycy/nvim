@@ -32,13 +32,15 @@ return {
 				custom_highlights = function(colors)
 					return {
 						-- 游標當前行行號顯示黃色
-						Normal                  = { fg = "#1e1e2e", bg = "#f9f1a5" },
-						CursorLineNr            = { fg = colors.peach, bold = true },
-						CursorLine              = { bg = "#040935" },
-						LineNr                  = { fg = "#415a77", bg = "none" },
-						Visual                  = { bg = "#1b2438", fg = "none" },
-						-- 浮動視窗邊框（含 lazygit.nvim 彈出框）全面套用色
-						FloatBorder             = { fg = colors.yellow },
+						Normal       = { fg = "#1e1e2e", bg = "#f9f1a5" },
+						CursorLineNr = { fg = colors.peach, bold = true },
+						CursorLine   = { bg = "#040935" },
+						LineNr       = { fg = "#415a77", bg = "none" },
+						Visual       = { bg = "#1b2438", fg = "none" },
+						FloatBorder  = { fg = colors.yellow, bg = "none" },
+						NormalFloat  = { bg = "#1e1e2e" },
+
+
 						LazyGitBorder           = { fg = colors.yellow },
 
 						-- 搜尋關鍵字高亮強調
@@ -55,6 +57,16 @@ return {
 						NeoTreeEndOfBuffer      = { bg = "none" },
 						SnacksDashboardNormal   = { bg = "none" },
 						SnacksDashboardTerminal = { bg = "none" },
+						NoiceArrowLavender      = {
+							fg = colors.lavender,
+							bold = true,
+						},
+						NoiceBracketBlue        = {
+							fg = colors.blue,
+							bold = true,
+						},
+
+
 						--SnacksDashboardNormalNC = { bg = "none" },
 						--NeoTreeSignColumn       = { bg = "none" }
 					}

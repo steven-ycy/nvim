@@ -11,7 +11,7 @@ M.setup = function()
 				return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 			end,
 			cwd = '${workspaceFolder}',
-			stdio = { vim.fn.getcwd() .. "/input.txt", nil, nil },
+			--		stdio = { vim.fn.getcwd() .. "/input.txt", nil, nil },
 			stopOnEntry = false,
 		},
 	}

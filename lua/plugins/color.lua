@@ -33,7 +33,7 @@ return {
 					return {
 						Normal       = { fg = "#1e1e2e", bg = "#f9f1a5" },
 						CursorLineNr = { fg = colors.peach, bold = true },
-						CursorLine   = { bg = "#040935", fg = colors.rosewater },
+						CursorLine   = { bg = "#040935", fg = "#ffffe5" },
 						LineNr       = { fg = "#415a77", bg = "none" },
 						Visual       = { bg = "#1b2438", fg = "none" },
 						FloatBorder  = { fg = colors.lavender, bg = "#1e1e2e" },

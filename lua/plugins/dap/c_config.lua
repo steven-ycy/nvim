@@ -11,8 +11,15 @@ M.setup = function()
 				return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
 			end,
 			cwd = '${workspaceFolder}',
-			--		stdio = { vim.fn.getcwd() .. "/input.txt", nil, nil },
+			stdio = { vim.fn.getcwd() .. "/input.txt", nil, nil },
 			stopOnEntry = false,
+			env = {
+				ASAN_OPTIONS = "abort_on_error=1",
+			},
+			initCommands = {
+				"process handle SIGABRT --stop true --pass false --notify false",
+			},
+			sourceLanguages = { "c", "cpp" },
 		},
 	}
 	dap.configurations.c = dap.configurations.cpp

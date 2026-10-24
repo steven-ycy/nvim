@@ -25,6 +25,10 @@ return {
 		vim.keymap.set('n', '<F11>', dap.step_into, {})
 		vim.keymap.set('n', '<F12>', dap.step_out, {})
 		vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Debug: Toggle UI" })
+
+		vim.keymap.set("n", "<leader>dq", function()
+			require("dap").terminate()
+		end, { desc = "DAP: Terminate and Close UI" })
 		dap.listeners.before.attach.dapui_config = function()
 			dapui.open()
 		end

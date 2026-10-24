@@ -39,6 +39,7 @@ return {
 
 				vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
 				vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+
 				vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
 				vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
 				vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
@@ -92,9 +93,15 @@ return {
 
 				-- 先建立 obj 目錄，再編譯，最後執行
 				if ft == "cpp" then
-					cmd = string.format("g++ -g -O0 %s -o %s", escaped_src, escaped_bin)
+					cmd = string.format(
+						"g++ -g -O0 -fsanitize=address -fno-sanitize-recover=all -fno-omit-frame-pointer %s -o %s",
+						escaped_src,
+						escaped_bin)
 				elseif ft == "c" then
-					cmd = string.format("gcc -g -O0 %s -o %s", escaped_src, escaped_bin)
+					cmd = string.format(
+						"gcc -g -O0 -fsanitize=address -fno-sanitize-recover=all -fno-omit-frame-pointer %s -o %s",
+						escaped_src,
+						escaped_bin)
 				end
 
 				-- 在 1 號浮動終端機中執行該指令

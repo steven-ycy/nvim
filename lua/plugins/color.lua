@@ -42,6 +42,7 @@ return {
 
 
 						LazyGitBorder           = { fg = colors.yellow },
+						LazyGitFloat            = { bg = "none", fg = colors.rosewater },
 
 						-- 搜尋關鍵字高亮強調
 						Search                  = { bg = colors.yellow, fg = colors.base, bold = true },

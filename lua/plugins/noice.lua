@@ -173,6 +173,8 @@ return {
 
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIconInput", { fg = colors2.teal })
 		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderIncRename", { fg = colors2.peach })
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIconIncRename", { fg = colors2.peach })
+
 
 
 		vim.api.nvim_set_hl(0, "NoiceCmdlineIconHelp", { fg = colors2.blue })

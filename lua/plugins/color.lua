@@ -33,7 +33,7 @@ return {
 					return {
 						Normal       = { fg = "#1e1e2e", bg = "#f9f1a5" },
 						CursorLineNr = { fg = colors.peach, bold = true },
-						CursorLine   = { bg = "#040935", fg = colors.text },
+						CursorLine   = { bg = "#040935", fg = colors.rosewater },
 						LineNr       = { fg = "#415a77", bg = "none" },
 						Visual       = { bg = "#1b2438", fg = "none" },
 						FloatBorder  = { fg = colors.lavender, bg = "#1e1e2e" },
@@ -48,7 +48,7 @@ return {
 						Search = { bg = colors.yellow, fg = colors.base, bold = true },
 						IncSearch = { bg = colors.yellow, fg = colors.base, bold = true },
 
-						NeoTreeCursorLine = { bg = "#1b2438" },
+						NeoTreeCursorLine = { link = "CursorLine" },
 						NeoTreeDirectoryIcon = { fg = colors.yellow },
 						NeoTreeDirectoryName = { fg = colors.text },
 						SnacksDashboardHeader = { fg = colors.yellow, bold = true },

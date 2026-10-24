@@ -85,6 +85,7 @@ return {
 					},
 				},
 				custom_popup = {
+					relative = "editor",
 					backend = "popup",
 					enter = true,
 					border = {
@@ -122,11 +123,11 @@ return {
 				-- 	{ "{message}", before = { "\n \u{276f} ", hl_group = "NoiceArrowYellow" } },
 				-- },
 				details = {
-					{ "\u{f005} ", hl_group = "NoiceStart" },
+					{ "🍋 ", hl_group = "NoiceStart" },
 					{ "{level} ", },
 					{ "{date} ", },
 					{ "{event}", },
-					{ "{kind}",    before = { ".", hl_group = "NoiceFormatKind" } },
+					{ "{kind}", before = { ".", hl_group = "NoiceFormatKind" } },
 					" ",
 					{
 						"{title}",
@@ -135,7 +136,7 @@ return {
 					},
 					{
 						"{cmdline}",
-						before = { "\n \u{f120} ", hl_group = "NoiceFormatCmdline" }
+						before = { "\n   ", hl_group = "NoiceArrowLavender" }
 
 					},
 					{

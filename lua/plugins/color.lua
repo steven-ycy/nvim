@@ -37,8 +37,9 @@ return {
 						CursorLine   = { bg = "#040935" },
 						LineNr       = { fg = "#415a77", bg = "none" },
 						Visual       = { bg = "#1b2438", fg = "none" },
-						FloatBorder  = { fg = colors.yellow, bg = "#1e1e2e" },
+						FloatBorder  = { fg = colors.lavender, bg = "#1e1e2e" },
 						NormalFloat  = { bg = "#1e1e2e" },
+						FloatTitle   = { bg = "none", fg = colors.maroon },
 
 
 						LazyGitBorder           = { fg = colors.yellow },

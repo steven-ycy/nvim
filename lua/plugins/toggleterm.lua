@@ -6,14 +6,16 @@ return {
 		'akinsho/toggleterm.nvim',
 		version = "*",
 		dependencies = {
-			"catppuccin/nvim", -- 確保 catppuccin 先就緒
+			"catppuccin/nvim",
 		},
 		config = function()
 			local colors = require("catppuccin.palettes").get_palette("mocha")
 			require("toggleterm").setup({
 				float_opts = {
-					border = "curved", -- 圓角邊框
+					border = "curved",
 					winblend = 0,
+
+
 				},
 				open_mapping = [[<c-\>]],
 				direction = "float",
@@ -26,10 +28,57 @@ return {
 						return vim.o.columns * 0.4
 					end
 				end,
-			})
+				highlights = {
+					-- highlights which map to a highlight group name and a table of it's values
+					-- NOTE: this is only a subset of values, any group placed here will be set for the terminal window split
+					Normal = {
+						guibg = "none",
+					},
+					NormalFloat = {
+						guibg = "none",
 
-			vim.keymap.set({ "n", "t" }, "<leader>tf", "<cmd>ToggleTerm direction=float<CR>",
+					},
+					FloatBorder = {
+						guifg = colors.yellow,
+						guibg = "none",
+					},
+				},
+
+			})
+			local Terminal = require("toggleterm.terminal").Terminal
+
+			local terms = {}
+			local defnum = 1
+
+			local function toggle_numbered_term(num)
+				num = num or defnum
+
+				if not terms[num] then
+					terms[num] = Terminal:new({
+						count = num,
+						direction = "float",
+						on_open = function(term)
+							vim.api.nvim_win_set_config(term.window, {
+								title = string.format("  Terminal #%d ", num),
+
+								title_pos = "center",
+							})
+						end,
+					})
+				end
+
+				terms[num]:toggle()
+			end
+
+
+			vim.keymap.set({ "n", "t" }, "<leader>tf", toggle_numbered_term
+				,
 				{ desc = "Toggle Float Terminal" })
+			for i = 1, 5 do
+				vim.keymap.set({ "n", "t" }, "<leader>t" .. i, function()
+					toggle_numbered_term(i)
+				end, { desc = string.format("Toggle Terminal #%d", i) })
+			end
 
 
 			vim.keymap.set({ "n", "t" }, "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>",

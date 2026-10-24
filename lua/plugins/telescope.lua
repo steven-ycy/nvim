@@ -31,20 +31,14 @@ return
 		}
 
 		local function set_telescope_windows_transparent()
+			local colors = require("catppuccin.palettes").get_palette("mocha")
+
 			local content_groups = {
-				-- 1. 內部內容視窗
 				"TelescopeNormal",
 				"TelescopePromptNormal",
 				"TelescopePromptPrefix",
 				"TelescopeResultsNormal",
 				"TelescopePreviewNormal",
-
-
-				-- 2. 標題背後的底色（把 Preview, Results, Prompt 字樣的背景抽乾）
-				"TelescopePreviewBorder",
-				"TelescopeResultsBorder",
-				"TelescopePromptBorder",
-
 			}
 
 			for _, name in ipairs(content_groups) do
@@ -53,15 +47,28 @@ return
 				hl.ctermbg = "none"
 				vim.api.nvim_set_hl(0, name, hl)
 			end
+
+			local border_groups = {
+				"TelescopePromptBorder",
+				"TelescopeResultsBorder",
+				"TelescopePreviewBorder",
+			}
+
+			for _, name in ipairs(border_groups) do
+				vim.api.nvim_set_hl(0, name, {
+					fg = colors.yellow, bg = "none", ctermbg = "none",
+				})
+			end
 			vim.api.nvim_set_hl(0, "TelescopePreviewTitle"
 			, { bg = "none", fg = colors.maroon })
 			vim.api.nvim_set_hl(0, "TelescopeResultsTitle"
 			, { bg = "none", fg = colors.maroon })
 			vim.api.nvim_set_hl(0, "TelescopePromptTitle"
 			, { bg = "none", fg = colors.maroon })
+			vim.api.nvim_set_hl(0, "TelescopeSelection", { link = "CursorLine" })
+			vim.api.nvim_set_hl(0, "TelescopeSelectionCaret", { link = "CursorLine" })
 		end
 
-		-- 綁定在 ColorScheme 事件，避免換主題時被覆蓋
 		vim.api.nvim_create_autocmd("ColorScheme", {
 			pattern = "*",
 			callback = set_telescope_windows_transparent,

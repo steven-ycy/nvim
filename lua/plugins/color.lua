@@ -31,43 +31,43 @@ return {
 				},
 				custom_highlights = function(colors)
 					return {
-						-- 游標當前行行號顯示黃色
 						Normal       = { fg = "#1e1e2e", bg = "#f9f1a5" },
 						CursorLineNr = { fg = colors.peach, bold = true },
-						CursorLine   = { bg = "#040935" },
+						CursorLine   = { bg = "#040935", fg = colors.text },
 						LineNr       = { fg = "#415a77", bg = "none" },
 						Visual       = { bg = "#1b2438", fg = "none" },
 						FloatBorder  = { fg = colors.lavender, bg = "#1e1e2e" },
 						NormalFloat  = { bg = "#1e1e2e" },
-						FloatTitle   = { bg = "none", fg = colors.maroon },
+						FloatTitle   = { bg = "none", fg = colors.maroon, bold = true },
 
 
-						LazyGitBorder           = { fg = colors.yellow },
-						LazyGitFloat            = { bg = "none", fg = colors.rosewater },
+						LazyGitBorder = { fg = colors.yellow, bold = true },
+						LazyGitFloat = { bg = "none", fg = colors.rosewater },
 
 						-- 搜尋關鍵字高亮強調
-						Search                  = { bg = colors.yellow, fg = colors.base, bold = true },
-						IncSearch               = { bg = colors.yellow, fg = colors.base, bold = true },
+						Search = { bg = colors.yellow, fg = colors.base, bold = true },
+						IncSearch = { bg = colors.yellow, fg = colors.base, bold = true },
 
-						-- Neo-tree 目錄選取與圖示強調色
-						NeoTreeCursorLine       = { bg = "#040935" },
-						NeoTreeDirectoryIcon    = { fg = colors.yellow },
-						NeoTreeDirectoryName    = { fg = colors.text },
-						SnacksDashboardHeader   = { fg = colors.yellow, bold = true },
-						NeoTreeNormal           = { bg = "none" },
-						NeoTreeNormalNC         = { bg = "none" },
-						NeoTreeEndOfBuffer      = { bg = "none" },
-						SnacksDashboardNormal   = { bg = "none" },
+						NeoTreeCursorLine = { bg = "#1b2438" },
+						NeoTreeDirectoryIcon = { fg = colors.yellow },
+						NeoTreeDirectoryName = { fg = colors.text },
+						SnacksDashboardHeader = { fg = colors.yellow, bold = true },
+						NeoTreeNormal = { bg = "none" },
+						NeoTreeNormalNC = { bg = "none" },
+						NeoTreeEndOfBuffer = { bg = "none" },
+						SnacksDashboardNormal = { bg = "none" },
 						SnacksDashboardTerminal = { bg = "none" },
-						NoiceArrowLavender      = {
+						NoiceArrowLavender = {
 							fg = colors.lavender,
 							bold = true,
 						},
-						NoiceBracketBlue        = {
+						NoiceBracketBlue = {
 							fg = colors.blue,
 							bold = true,
 						},
-						NoiceStart              = {
+
+
+						NoiceStart = {
 							fg = "#E6C384",
 						}
 

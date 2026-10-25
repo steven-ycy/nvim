@@ -7,7 +7,7 @@ return {
 			enabled = true, -- 開啟圖片渲染功能
 		},
 		notifier = {
-			enabled = true, -- 取代 nvim-notify，美化彈出訊息
+			enabled = false, -- 取代 nvim-notify，美化彈出訊息
 			timeout = 3000,
 		},
 		dashboard = { enable = true },

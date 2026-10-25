@@ -30,6 +30,7 @@ return
 
 		}
 
+
 		local function set_telescope_windows_transparent()
 			local colors = require("catppuccin.palettes").get_palette("mocha")
 
@@ -56,7 +57,7 @@ return
 
 			for _, name in ipairs(border_groups) do
 				vim.api.nvim_set_hl(0, name, {
-					fg = colors.yellow, bg = "none", ctermbg = "none",
+					link = "FloatBorder"
 				})
 			end
 			vim.api.nvim_set_hl(0, "TelescopePreviewTitle"
@@ -74,7 +75,6 @@ return
 			callback = set_telescope_windows_transparent,
 		})
 
-		-- 立即套用
 		set_telescope_windows_transparent()
 
 

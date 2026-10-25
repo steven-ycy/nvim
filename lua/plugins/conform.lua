@@ -21,7 +21,6 @@ return {
 					lsp_format = "fallback",
 				},
 				formatters = {
-					-- C / C++ (clang-format) 設定 4 格縮排
 					["clang-format"] = {
 						append_args = {
 							"-style={BasedOnStyle: llvm, IndentWidth: 4, TabWidth: 4}",

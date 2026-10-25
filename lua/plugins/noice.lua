@@ -19,6 +19,44 @@ return {
 		vim.api.nvim_set_hl(0, "MyLavenderBorder", { fg = colors2.lavender })
 		vim.keymap.set("n", "<leader>nn", "<cmd>Noice<cr>", { desc = "Search Messages (Noice)" })
 		vim.keymap.set("n", "<leader>na", "<cmd>Noice all<cr>", { desc = "Search Messages all(Noice)" })
+		local M = {
+			border = {
+				style = "rounded",
+				padding = { 0, 1 }, -- 上下 0 行、左右 1 格內距
+			},
+			size = {
+				max_width = 80, -- 最大寬度上限（防止過寬）
+
+
+				max_height = 20, -- 最大高度上限（超出時會出現捲動）
+			},
+			position = { row = 2, col = 1 },
+			win_options = {
+				winhighlight = {
+					Normal = "SNormalFloat",
+					FloatBorder = "SFloatBorder",
+				},
+			},
+
+		}
+		local N = {
+
+			{ find = "written" },
+			-- { find = "%d+ lines? yanked" },
+			{ find = "%d+ more lines?" },
+			{ find = "%d+ fewer lines?" },
+			-- { find = "Already at" },
+			{ find = "search hit" },
+			{ event = "msg_ruler" },
+			{ find = "E486: Pattern not found" },
+			{ find = "E37: No write since last change" },
+			{ find = "%d+ change" }, -- "1 change; before #..."
+			{ find = "%d+ line.*before" }, -- "... before #..."
+			{ find = "%d+ line.*after" }, -- "... after #..."
+
+
+
+		}
 		require("noice").setup({
 			cmdline = {
 				format = {
@@ -55,35 +93,31 @@ return {
 							{ event = "msg_show" },
 							{ event = "lsp",     kind = "message" },
 						},
+						["not"] = {
+							any = N,
+						}
 					},
 				},
 				all = {
 					-- options for the message history that you get with `:Noice`
 					view = "custom_popup",
 					opts = { enter = true, format = "details" },
-					filter = {},
+					filter = {
+
+
+						["not"] = {
+							any = N,
+
+
+						},
+
+					}
 				},
 			},
+
 			views = {
-				hover = {
-					border = {
-						style = "rounded",
-						padding = { 0, 1 }, -- 上下 0 行、左右 1 格內距
-					},
-					size = {
-						max_width = 80, -- 最大寬度上限（防止過寬）
+				hover = M,
 
-
-						max_height = 20, -- 最大高度上限（超出時會出現捲動）
-					},
-					position = { row = 2, col = 1 },
-					win_options = {
-						winhighlight = {
-							Normal = "NormalFloat",
-							FloatBorder = "FloatBorder",
-						},
-					},
-				},
 				custom_popup = {
 					relative = "editor",
 					backend = "popup",
@@ -123,7 +157,7 @@ return {
 				-- 	{ "{message}", before = { "\n \u{276f} ", hl_group = "NoiceArrowYellow" } },
 				-- },
 				details = {
-					{ "🍋 ", hl_group = "NoiceStart" },
+					{ "🍋 ", },
 					{ "{level} ", },
 					{ "{date} ", },
 					{ "{event}", },
@@ -147,44 +181,52 @@ return {
 				},
 
 			},
+			routes = {
+				{
+					filter = {
+						event = "msg_show",
+						kind = "confirm",
+					},
+					view = "confirm",
+				},
+
+			},
 
 
 		})
 
 
-
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = colors2.rosewater, bg = "none" })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderFilter", { fg = colors2.mauve, bg = "none" })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { fg = colors2.yellow, bg = "none" })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderInput", { fg = colors2.teal, bg = "none" })
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderHelp", { fg = colors2.blue, bg = "none" })
-
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderLua", { fg = colors2.flamingo, bg = "none" })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIconCmdline", { fg = colors2.yellow })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = colors2.rosewater })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIconFilter", { fg = colors2.mauve })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIconInput", { fg = colors2.teal })
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderIncRename", { fg = colors2.peach })
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIconIncRename", { fg = colors2.peach })
-
-
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIconHelp", { fg = colors2.blue })
-
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIconLua", { fg = colors2.flamingo })
 		local set_popup_hl = function()
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderSearch", { fg = colors2.rosewater, bg = "none" })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderFilter", { fg = colors2.mauve, bg = "none" })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderCmdline", { fg = colors2.yellow, bg = "none" })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderInput", { fg = colors2.teal, bg = "none" })
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderHelp", { fg = colors2.blue, bg = "none" })
+
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderLua", { fg = colors2.flamingo, bg = "none" })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlineIconCmdline", { fg = colors2.yellow })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlineIconSearch", { fg = colors2.rosewater })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlineIconFilter", { fg = colors2.mauve })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlineIconInput", { fg = colors2.teal })
+			vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorderIncRename", { fg = colors2.peach })
+			vim.api.nvim_set_hl(0, "NoiceCmdlineIconIncRename", { fg = colors2.peach })
+
+
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlineIconHelp", { fg = colors2.blue })
+
+			vim.api.nvim_set_hl(0, "NoiceCmdlineIconLua", { fg = colors2.flamingo })
 			vim.api.nvim_set_hl(0, "NoicePopupNormal", { bg = "none", ctermbg = "NONE" })
 			vim.api.nvim_set_hl(0, "NoicePopupBorder",
-				{ fg = colors2.lavender, bg = "NONE", ctermbg = "NONE" })
+				{ link = "NoiceArrowLavender" })
 		end
 
 		set_popup_hl()

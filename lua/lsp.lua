@@ -13,7 +13,7 @@ vim.diagnostic.config({
 			[severity.INFO]  = "\u{f05a}",
 		},
 	},
-	-- virtual_text = true,  在行尾顯示錯誤文字訊息
+	virtual_text = true,
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,

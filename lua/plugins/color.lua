@@ -27,7 +27,6 @@ return {
 					noice = true,
 					notify = true,
 					cmp = true,
-
 				},
 				custom_highlights = function(colors)
 					return {
@@ -36,8 +35,10 @@ return {
 						CursorLine   = { bg = "#040935", fg = "#ffffe5" },
 						LineNr       = { fg = "#415a77", bg = "none" },
 						Visual       = { bg = "#1b2438", fg = "none" },
-						FloatBorder  = { fg = colors.lavender, bg = "#1e1e2e" },
-						NormalFloat  = { bg = "#1e1e2e" },
+						SFloatBorder = { fg = colors.lavender, bg = "#1e1e2e", bold = true },
+						SNormalFloat = { bg = "#1e1e2e" },
+						FloatBorder  = { fg = colors.yellow, bg = "none" },
+						NormalFloat  = { bg = "none" },
 						FloatTitle   = { bg = "none", fg = colors.maroon, bold = true },
 
 
@@ -56,10 +57,11 @@ return {
 						NeoTreeNormalNC = { bg = "none" },
 						NeoTreeEndOfBuffer = { bg = "none" },
 						SnacksDashboardNormal = { bg = "none" },
-						SnacksDashboardTerminal = { bg = "none" },
+						-- SnacksDashboardTerminal = { bg = "none" },
 						NoiceArrowLavender = {
 							fg = colors.lavender,
 							bold = true,
+							bg = "none",
 						},
 						NoiceBracketBlue = {
 							fg = colors.blue,
@@ -67,18 +69,9 @@ return {
 						},
 
 
-						NoiceStart = {
-							fg = "#E6C384",
-						}
-
-
-						--SnacksDashboardNormalNC = { bg = "none" },
-						--NeoTreeSignColumn       = { bg = "none" }
 					}
 				end,
 			})
-
-			-- 將 Neovim 的色彩主題正式套用為 catppuccin
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
@@ -94,7 +87,28 @@ return {
 				options    = {
 					theme = 'everforest',
 				},
-				extensions = { 'toggleterm', 'quickfix' }
+				extensions = { 'toggleterm', 'quickfix' },
+				sections   = {
+					lualine_y = {
+						{
+							'location',
+						},
+						{
+							'progress',
+						},
+					},
+					lualine_z = {
+
+						{
+							'datetime',
+							-- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+							style = "%H:%M %a %m/%d",
+							icon = { "\u{f144c}", },
+
+						}
+
+					},
+				}
 			}
 		end
 	},

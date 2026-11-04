@@ -30,7 +30,7 @@ return {
 				},
 				custom_highlights = function(colors)
 					return {
-						Normal       = { fg = "#1e1e2e", bg = "#f9f1a5" },
+						Normal       = { bg = "none" },
 						CursorLineNr = { fg = colors.peach, bold = true },
 						CursorLine   = { bg = "#040935", fg = "#ffffe5" },
 						LineNr       = { fg = "#415a77", bg = "none" },
@@ -74,42 +74,5 @@ return {
 			})
 			vim.cmd.colorscheme("catppuccin")
 		end,
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			"catppuccin/nvim",
-
-		},
-		opts = function()
-			return {
-				options    = {
-					theme = 'everforest',
-				},
-				extensions = { 'toggleterm', 'quickfix' },
-				sections   = {
-					lualine_y = {
-						{
-							'location',
-						},
-						{
-							'progress',
-						},
-					},
-					lualine_z = {
-
-						{
-							'datetime',
-							-- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-							style = "%H:%M %a %m/%d",
-							icon = { "\u{f144c}", },
-
-						}
-
-					},
-				}
-			}
-		end
 	},
 }

@@ -14,6 +14,9 @@ return {
 				float_opts = {
 					border = "curved",
 					winblend = 0,
+					height = function() return math.floor(vim.o.lines * 0.5) end,
+					row = function() return math.floor(vim.o.lines * 0.45) end,
+
 
 
 				},
@@ -46,7 +49,6 @@ return {
 
 			})
 			local Terminal = require("toggleterm.terminal").Terminal
-
 			local terms = {}
 			local defnum = 1
 
@@ -69,17 +71,15 @@ return {
 
 				terms[num]:toggle()
 			end
-
-
-			vim.keymap.set({ "n", "t" }, "<leader>tf", toggle_numbered_term
-				,
-				{ desc = "Toggle Float Terminal" })
+			vim.keymap.set("n", "<leader>tc", function()
+				local cwd = vim.fn.expand("%:p:h")
+				require("toggleterm").exec("cd " .. vim.fn.fnameescape(cwd), 1)
+			end, { desc = "CD terminal 1 to current file dir" })
 			for i = 1, 5 do
 				vim.keymap.set({ "n", "t" }, "<leader>t" .. i, function()
-					toggle_numbered_term(i)
-				end, { desc = string.format("Toggle Terminal #%d", i) })
+					require("toggleterm").toggle(i, nil, nil, "float")
+				end, { desc = string.format("切換 %d 號浮動終端機", i) })
 			end
-
 
 			vim.keymap.set({ "n", "t" }, "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>",
 				{ desc = "Toggle Vertical Terminal" })
@@ -117,16 +117,43 @@ return {
 				local escaped_src = vim.fn.shellescape(file)
 				local escaped_bin = vim.fn.shellescape(out_bin)
 
-				-- 先建立 obj 目錄，再編譯，最後執行
 				if ft == "cpp" then
-					cmd = string.format("g++ -O2 %s -o %s && %s", escaped_src, escaped_bin, escaped_bin)
+					cmd = string.format(
+						"g++ -g -O0 -fsanitize=address,undefined -fno-omit-frame-pointer -Wall -Wextra %s -o %s && %s",
+						escaped_src, escaped_bin, escaped_bin)
 				elseif ft == "c" then
-					cmd = string.format("gcc -O2 %s -o %s && %s", escaped_src, escaped_bin, escaped_bin)
+					cmd = string.format(
+						"gcc -g -O0 -fsanitize=address,undefined -fno-omit-frame-pointer -Wall -Wextra %s -o %s && %s",
+						escaped_src, escaped_bin, escaped_bin)
 				end
-
-				-- 在 1 號浮動終端機中執行該指令
-				require("toggleterm").exec(cmd, 1, nil, nil, "float")
+				require("toggleterm").exec(cmd, 3, nil, nil, "float")
 			end, { desc = "Run current file in ToggleTerm" })
+			for i = 1, 5 do
+				vim.keymap.set("n", "<leader>f" .. i, function()
+					vim.cmd("write")
+					local ft = vim.bo.filetype
+					local cwd = vim.fn.getcwd()
+					--local file = vim.fn.expand("%")
+					local cmd = ""
+					local file = vim.fn.expand("%:p") -- 原始檔完整路徑
+					local fname = vim.fn.expand("%:t:r") -- 只有純檔名，不含副檔名與路徑 (例如 main.cpp -> main)
+					local out_bin = cwd .. "/obj/" .. fname -- 目標二進位檔路徑
+
+					local escaped_src = vim.fn.shellescape(file)
+					local escaped_bin = vim.fn.shellescape(out_bin)
+
+					if ft == "cpp" then
+						cmd = string.format(
+							"g++ -O2 -g -Wall -Wextra %s -o %s && %s",
+							escaped_src, escaped_bin, escaped_bin)
+					elseif ft == "c" then
+						cmd = string.format(
+							"gcc -O2 -std=c17 -g -Wall -Wextra %s -o %s && %s",
+							escaped_src, escaped_bin, escaped_bin)
+					end
+					require("toggleterm").exec(cmd, i, nil, nil, "float")
+				end, { desc = string.format("Run current file in ToggleTerm %d", i) })
+			end
 			vim.keymap.set("n", "<leader>fd", function()
 				vim.cmd("write")
 				local ft = vim.bo.filetype
@@ -140,7 +167,6 @@ return {
 				local escaped_src = vim.fn.shellescape(file)
 				local escaped_bin = vim.fn.shellescape(out_bin)
 
-				-- 先建立 obj 目錄，再編譯，最後執行
 				if ft == "cpp" then
 					cmd = string.format(
 						"g++ -g -O0 -fsanitize=address -fno-sanitize-recover=all -fno-omit-frame-pointer %s -o %s",
@@ -152,9 +178,7 @@ return {
 						escaped_src,
 						escaped_bin)
 				end
-
-				-- 在 1 號浮動終端機中執行該指令
-				require("toggleterm").exec(cmd, 1, nil, nil, "float")
+				require("toggleterm").exec(cmd, 3, nil, nil, "float")
 			end, { desc = "ToggleTerm and for debugging" })
 		end
 	},

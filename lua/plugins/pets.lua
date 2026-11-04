@@ -1,0 +1,43 @@
+return {
+	-- 	{
+	-- 		"giusgad/pets.nvim",
+	-- 		dependencies = {
+	-- 			"MunifTanjim/nui.nvim",
+	-- 			{
+	-- 				"3rd/image.nvim",
+	-- 				opts = {
+	-- 					backend = "kitty", -- WezTerm 原生支援 Kitty Graphics Protocol
+	-- 					processor = "magick_cli",
+	-- 					integrations = {
+	-- 						markdown = {
+	-- 							enabled = true,
+	-- 						},
+	-- 					},
+	-- 					max_width = 100,
+	-- 					max_height = 12,
+	-- 					max_height_window_percentage = math.huge,
+	-- 					max_width_window_percentage = math.huge,
+	-- 					window_overlap_clear_enabled = true,
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		config = function()
+	-- 			require("pets").setup({
+	-- 				-- your options here
+	-- 			})
+	-- 		end
+	--
+	--
+	-- 	},
+	--
+	-- 	{
+	-- 		{
+	-- 			'tamton-aquib/duck.nvim',
+	-- 			-- config = function()
+	-- 			-- 	vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {})
+	-- 			-- 	vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
+	-- 			-- 	vim.keymap.set('n', '<leader>da', function() require("duck").cook_all() end, {})
+	-- 			-- end
+	-- 		}
+	-- 	}
+}

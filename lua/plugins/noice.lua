@@ -60,7 +60,7 @@ return {
 		require("noice").setup({
 			cmdline = {
 				format = {
-					cmdline = { icon = "\u{f0f67}" }
+					cmdline = { icon = "\u{f0f67}" },
 				}
 			},
 			lsp = {

@@ -49,8 +49,9 @@ return {
 				vim.api.nvim_set_hl(0, "RainbowOrange1", { fg = "#9E6838" })
 			end)
 
-
-			require("ibl").setup { scope = { highlight = highlight, char = "▎", show_end = false, show_start = false }, indent = { highlight = highlight1, char = "▏" } }
+			-- vim.api.nvim_set_hl(0, "IblCustomWs", { bg = "#63874B" })
+			require("ibl").setup {
+				scope = { highlight = highlight, char = "▎", show_end = false, show_start = false }, indent = { highlight = highlight1, char = "▏" } }
 		end,
 	}
 

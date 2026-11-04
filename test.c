@@ -16,13 +16,10 @@ int main() {
     printf("this is a message\n");
     int e = 0;
     e = test();
-    scanf("%d", &e);
     printf("this is your input %d\n", e);
-    a[e] = 2;
-    a[3] = 4;
-    for (int b = 0; b < 5; b++) {
+    a[1] = 4;
+    for (int b = 0; b < 2; b++) {
         a[b] = b;
     }
-    scanf("%d");
     return 0;
 }

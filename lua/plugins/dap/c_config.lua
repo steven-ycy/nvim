@@ -14,10 +14,10 @@ M.setup = function()
 			stdio = { vim.fn.getcwd() .. "/input.txt", nil, nil },
 			stopOnEntry = false,
 			env = {
-				ASAN_OPTIONS = "abort_on_error=1",
+				ASAN_OPTIONS = "abort_on_error=1:detect_leaks=0",
 			},
 			initCommands = {
-				"process handle SIGABRT --stop true --pass false --notify false",
+				"process handle SIGABRT --stop true --pass false --notify true",
 			},
 			sourceLanguages = { "c", "cpp" },
 		},

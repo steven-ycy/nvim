@@ -8,6 +8,7 @@ return
 		"folke/noice.nvim",
 		"folke/noice.nvim",
 		"catppuccin/nvim",
+		"folke/todo-comments.nvim",
 		-- optional but recommended
 		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 	},
@@ -83,6 +84,8 @@ return
 		pcall(telescope.load_extension, "notify")
 		pcall(telescope.load_extension, "noice")
 		local builtin = require('telescope.builtin')
+
+		vim.keymap.set('n', '<leader>ft', "<cmd>TodoTelescope<cr>", { desc = 'Telescope find todo' })
 		vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 		vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 		vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
@@ -90,6 +93,6 @@ return
 		vim.keymap.set("n", "<leader>sm", "<cmd>Noice telescope<cr>", { desc = "Search Messages (Noice)" })
 		vim.keymap.set("n", "<leader>fn", function()
 			require("telescope").extensions.notify.notify()
-		end, { desc = "搜尋通知歷史 (Notify History)" })
+		end, { desc = "Notify History" })
 	end
 }

@@ -22,13 +22,13 @@ return {
 		local M = {
 			border = {
 				style = "rounded",
-				padding = { 0, 1 }, -- 上下 0 行、左右 1 格內距
+				padding = { 0, 1 },
 			},
 			size = {
-				max_width = 80, -- 最大寬度上限（防止過寬）
+				max_width = 80,
 
 
-				max_height = 20, -- 最大高度上限（超出時會出現捲動）
+				max_height = 20,
 			},
 			position = { row = 2, col = 1 },
 			win_options = {

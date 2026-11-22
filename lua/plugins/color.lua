@@ -13,14 +13,14 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		priority = 1000, -- 最高優先級，確保在啟動時最先載入顏色，避免畫面閃爍
+		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha", -- 可選風格: latte (亮色), frappe, macchiato, mocha (最受歡迎的暗色)
-				transparent_background = true, -- 是否啟用背景透明
+				flavour = "mocha",
+				transparent_background = true,
 				integrations = {
 					treesitter = true,
-					neotree = true, -- 自動適配 Neo-tree 顏色
+					neotree = true,
 					telescope = { enabled = true },
 					mason = true,
 					which_key = true,
@@ -45,7 +45,6 @@ return {
 						LazyGitBorder = { fg = colors.yellow, bold = true },
 						LazyGitFloat = { bg = "none", fg = colors.rosewater },
 
-						-- 搜尋關鍵字高亮強調
 						Search = { bg = colors.yellow, fg = colors.base, bold = true },
 						IncSearch = { bg = colors.yellow, fg = colors.base, bold = true },
 

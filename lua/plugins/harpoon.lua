@@ -1,6 +1,5 @@
 local conf = require("telescope.config").values
 
--- 2. 宣告這個輔助函式（完全合法，不會報錯）
 local function toggle_telescope(harpoon_files)
 	local file_paths = {}
 	for _, item in ipairs(harpoon_files.items) do
@@ -27,7 +26,6 @@ return {
 	config = function()
 		local harpoon = require("harpoon")
 
-		-- 初始化 harpoon
 		harpoon:setup({})
 		vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
 		vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)

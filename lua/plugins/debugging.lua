@@ -32,7 +32,6 @@ return {
 
 		require("plugins.dap.c_config").setup()
 
-		-- 自動開關 dap-ui 的監聽器
 		dap.listeners.before.attach.dapui_config = function()
 			dapui.open()
 		end

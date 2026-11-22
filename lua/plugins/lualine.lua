@@ -22,17 +22,17 @@ return {
 						'progress',
 					},
 				},
-				lualine_z = {
-
-					{
-						'datetime',
-						-- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-						style = "%H:%M %a %m/%d",
-						icon = { "\u{f144c}", },
-
-					}
-
-				},
+				-- 	lualine_z = {
+				--
+				-- 		{
+				-- 			'datetime',
+				-- 			-- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+				-- 			style = "%H:%M %a %m/%d",
+				-- 			icon = { "\u{f144c}", },
+				--
+				-- 		}
+				--
+				-- 	},
 			}
 		}
 	end

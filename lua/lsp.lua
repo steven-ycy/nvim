@@ -82,7 +82,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		opts.desc = "Show references"
 		map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
-
-		-- 程式碼格式化
 	end,
 })

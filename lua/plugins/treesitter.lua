@@ -4,7 +4,6 @@ return {
 	config = function()
 		local ts = require("nvim-treesitter")
 
-		-- 1. 指定常用語言，啟動時確保安裝
 		local languages = {
 			"c",
 			"cpp",
@@ -18,7 +17,6 @@ return {
 		}
 		ts.install(languages)
 
-		-- 2. 官方標準寫法：當開啟對應語言檔案時，自動啟用高亮、摺疊與縮排
 		vim.api.nvim_create_autocmd("FileType", {
 			group = vim.api.nvim_create_augroup("TreesitterConfig", { clear = true }),
 			pattern = languages,

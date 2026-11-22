@@ -9,7 +9,6 @@ return {
 		},
 		lazy = false,             -- neo-tree will lazily load itself
 		keys = {
-			-- 常用快捷鍵：開關側邊檔案樹、搜尋當前檔案
 			{ "<leader>e",  "<cmd>Neotree toggle<cr>",     desc = "Toggle Neo-tree" },
 			{ "<leader>o",  "<cmd>Neotree focus<cr>",      desc = "Focus Neo-tree" },
 			{ "<leader>ge", "<cmd>Neotree git_status<cr>", desc = "Neo-tree Git Status" },

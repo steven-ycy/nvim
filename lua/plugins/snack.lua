@@ -4,23 +4,22 @@ return {
 	lazy = false,
 	opts = {
 		image = {
-			enabled = true, -- 開啟圖片渲染功能
+			enabled = true,
 		},
 		notifier = {
-			enabled = false, -- 取代 nvim-notify，美化彈出訊息
+			enabled = false,
 			timeout = 3000,
 		},
 		dashboard = { enable = true },
 		picker = { enabled = true },
 	},
 	keys = {
-		-- 綁定快捷鍵（例如 <leader>bd 或 <leader>db）
 		{
 			"<leader>db",
 			function()
 				Snacks.dashboard()
 			end,
-			desc = "開啟 Dashboard",
+			desc = "Open Dashboard",
 		},
 		-- {
 		-- 	"<leader>un",
